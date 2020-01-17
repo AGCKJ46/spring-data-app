@@ -1,7 +1,9 @@
 package net.ckj46.springdataapp;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface EmployeeRepository extends CrudRepository<Employee, Long> {
-    Iterable<Employee> findByFirstName(String firstName);
+import java.util.List;
+
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+    List<Employee> findByFirstName(String firstName);
 }

@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Vector;
 
 @RequiredArgsConstructor
@@ -14,17 +16,25 @@ public class RunAtStart {
 
     @PostConstruct
     public void run(){
-        Employee employee = new Employee();
+        EmployeeGen employeeGen = new EmployeeGen();
+        List<Employee> employees = employeeGen.gen();
 
-        employee.setFirstName("Adam");
-        employee.setLastName("Jabol");
-        employee.setSallary(new BigDecimal(15000.0));
+        for (Employee employee: employees) {
+            employeeRepository.save(employee);
+        }
 
-        employeeRepository.save(employee);
-
-        Iterable<Employee> workers = employeeRepository.findByFirstName("Adam");
+        List<Employee> workers = employeeRepository.findByFirstName("Adam");
+        System.out.println("findByFirstName:");
         for (Employee worker: workers) {
             System.out.println("worker: "+worker);
         }
+
+        workers.clear();
+        workers = employeeRepository.findAll();
+        System.out.println("findAll:");
+        for (Employee worker: workers) {
+            System.out.println("worker: "+worker);
+        }
+
     }
 }

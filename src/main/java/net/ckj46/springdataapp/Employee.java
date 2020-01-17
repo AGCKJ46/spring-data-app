@@ -6,11 +6,17 @@ import lombok.RequiredArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
-@Data
+
 @Entity
+@Data
 public class Employee {
+    @Transient
+    private static Long idiki=1L;
+
     @Id
     @GeneratedValue
     private Long id;
@@ -18,6 +24,9 @@ public class Employee {
     private String firstName;
     private String lastName;
     private BigDecimal sallary;
+    private LocalDate employmentdate;
 
+    public Employee() {
+    }
 
 }
