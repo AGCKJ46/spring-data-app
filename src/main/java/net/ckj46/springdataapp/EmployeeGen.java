@@ -1,10 +1,13 @@
 package net.ckj46.springdataapp;
 
+import org.springframework.stereotype.Service;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
+@Service
 public class EmployeeGen {
 
     private List<String> names = new LinkedList<>();
