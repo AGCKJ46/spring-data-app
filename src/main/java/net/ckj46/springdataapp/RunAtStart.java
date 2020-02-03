@@ -44,6 +44,8 @@ public class RunAtStart {
                 Sort.Order.by("lastName").with(Sort.Direction.ASC)
         ));
          */
+
+        /*
         Page<Employee> page = employeeRepository.findAll(PageRequest.of(2,10));
         log.info("page.getTotalElements: {}", page.getTotalElements());
         log.info("page.getTotalPages: {}", page.getTotalPages());
@@ -51,9 +53,22 @@ public class RunAtStart {
         log.info("page.getNumber: {}", page.getNumber());
         workers = page.stream().collect(Collectors.toList());
         printAll(workers);
+         */
+
+        // printAll(employeeRepository.findByFirstNameIgnoreCase("adam"));
+
+        // printAll(employeeRepository.findByLastNameOrderByFirstNameDesc("Nowak"));
+        // printAll(employeeRepository.findBySallaryBetween(5000L, 8000L));
+        // printAll(employeeRepository.findAllWithSalariesBetweenSomeValues(5000L, 8000L));
+
+        // 07
+        printAll(employeeRepository.findGuyWithHighestSalary());
+        printAll(employeeRepository.findOnlyOneGuyWithHighestSalary());
+        printAll(employeeRepository.findNativelyWithSalariesBetweenSomeValues(9000L, 20000L));
     }
 
     private void printAll(List<Employee> workers) {
+        log.info("printAll - size: {}", workers.size());
         workers.forEach(System.out::println);
     }
 }

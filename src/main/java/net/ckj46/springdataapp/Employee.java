@@ -1,18 +1,21 @@
 package net.ckj46.springdataapp;
 
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Transient;
-import java.math.BigDecimal;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 
+
+@Setter
+@Getter
+@NamedQuery(
+        name = "Employee.findAllWithSalariesBetweenSomeValues",
+        query = "select e from Employee e where e.salary between ?1 and ?2"
+)
+// lepszą alternatywa do tego rozwiazania jest umieszczenie takiego zapytania w repo z adnotacją @Query (patrz findGuyWithHighestSalary)
 @Entity
-@Data
 public class Employee {
     @Transient
     private static Long idiki=1L;
@@ -23,10 +26,21 @@ public class Employee {
 
     private String firstName;
     private String lastName;
-    private BigDecimal sallary;
-    private LocalDate employmentdate;
+    private Long salary;
+    private LocalDate employmentDate;
 
     public Employee() {
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Employee{");
+        sb.append("id=").append(id);
+        sb.append(", firstName='").append(firstName).append('\'');
+        sb.append(", lastName='").append(lastName).append('\'');
+        sb.append(", salary=").append(salary);
+        sb.append(", employmentDate=").append(employmentDate);
+        sb.append('}');
+        return sb.toString();
+    }
 }

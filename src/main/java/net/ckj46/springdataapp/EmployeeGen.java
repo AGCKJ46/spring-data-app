@@ -56,12 +56,27 @@ public class EmployeeGen {
                 Employee employee = new Employee();
                 employee.setLastName(name);
                 employee.setFirstName(surname);
-                employee.setSallary(new BigDecimal(Math.round(Math.random()*10000)));
-                employee.setEmploymentdate(LocalDate.now().minusDays(Math.round(Math.random()*100)));
+                employee.setSalary(Math.round(Math.random()*10000));
+                employee.setEmploymentDate(LocalDate.now().minusDays(Math.round(Math.random()*100)));
 
                 employees.add(employee);
             }
         }
+
+        Employee employee = new Employee();
+        employee.setLastName("Bartłomiej");
+        employee.setFirstName("Wozek");
+        employee.setSalary(15000L);
+        employee.setEmploymentDate(LocalDate.now().minusDays(Math.round(Math.random()*100)));
+        employees.add(employee);
+
+        employee = new Employee();
+        employee.setLastName("Marek");
+        employee.setFirstName("Wozek");
+        employee.setSalary(15000L);
+        employee.setEmploymentDate(LocalDate.now().minusDays(Math.round(Math.random()*100)));
+        employees.add(employee);
+
         return employees;
     }
 }
