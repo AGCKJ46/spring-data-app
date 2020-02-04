@@ -2,10 +2,17 @@ package net.ckj46.springdataapp;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+import static javax.persistence.TemporalType.TIMESTAMP;
 
 
 @Setter
@@ -16,6 +23,7 @@ import java.time.LocalDate;
 )
 // lepszą alternatywa do tego rozwiazania jest umieszczenie takiego zapytania w repo z adnotacją @Query (patrz findGuyWithHighestSalary)
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Employee {
     @Transient
     private static Long idiki=1L;
@@ -29,6 +37,19 @@ public class Employee {
     private Long salary;
     private LocalDate employmentDate;
 
+    @CreatedDate
+    private LocalDateTime createdAt;
+
+    // @CreatedBy
+    // private User createBy;
+
+    @LastModifiedDate
+    private LocalDateTime editedAt;
+
+    // @LastModifiedBy
+    // private User editedBy;
+
+
     public Employee() {
     }
 
@@ -40,6 +61,8 @@ public class Employee {
         sb.append(", lastName='").append(lastName).append('\'');
         sb.append(", salary=").append(salary);
         sb.append(", employmentDate=").append(employmentDate);
+        sb.append(", createdAt=").append(createdAt);
+        sb.append(", editedAt=").append(editedAt);
         sb.append('}');
         return sb.toString();
     }

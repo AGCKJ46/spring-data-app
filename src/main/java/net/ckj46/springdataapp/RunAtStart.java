@@ -19,7 +19,7 @@ public class RunAtStart {
     private final EmployeeGen employeeGen;
 
     @PostConstruct
-    public void run(){
+    public void run() throws InterruptedException {
         List<Employee> employees = employeeGen.gen();
 
         for (Employee employee: employees) {
@@ -67,6 +67,7 @@ public class RunAtStart {
         //printAll(employeeRepository.findNativelyWithSalariesBetweenSomeValues(9000L, 20000L));
 
         // 09
+        Thread.sleep(5000);
         log.info("Updated records: {}", employeeRepository.setSalaryForAll(15000L));
         printAll(employeeRepository.findAll());
     }
