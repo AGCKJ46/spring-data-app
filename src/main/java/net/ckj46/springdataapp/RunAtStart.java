@@ -62,9 +62,13 @@ public class RunAtStart {
         // printAll(employeeRepository.findAllWithSalariesBetweenSomeValues(5000L, 8000L));
 
         // 07
-        printAll(employeeRepository.findGuyWithHighestSalary());
-        printAll(employeeRepository.findOnlyOneGuyWithHighestSalary());
-        printAll(employeeRepository.findNativelyWithSalariesBetweenSomeValues(9000L, 20000L));
+        //printAll(employeeRepository.findGuyWithHighestSalary());
+        //printAll(employeeRepository.findOnlyOneGuyWithHighestSalary());
+        //printAll(employeeRepository.findNativelyWithSalariesBetweenSomeValues(9000L, 20000L));
+
+        // 09
+        log.info("Updated records: {}", employeeRepository.setSalaryForAll(15000L));
+        printAll(employeeRepository.findAll());
     }
 
     private void printAll(List<Employee> workers) {
