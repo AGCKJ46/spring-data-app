@@ -25,6 +25,8 @@ public class RunAtStart {
         for (Employee employee: employees) {
             employeeRepository.save(employee);
         }
+        printAll(employeeRepository.findAll());
+
         List<Employee> workers = null;
         /*
         workers = employeeRepository.findByFirstName("Adam");
@@ -67,7 +69,6 @@ public class RunAtStart {
         //printAll(employeeRepository.findNativelyWithSalariesBetweenSomeValues(9000L, 20000L));
 
         // 09
-        Thread.sleep(5000);
         log.info("Updated records: {}", employeeRepository.setSalaryForAll(15000L));
         printAll(employeeRepository.findAll());
     }

@@ -40,14 +40,14 @@ public class Employee {
     @CreatedDate
     private LocalDateTime createdAt;
 
-    // @CreatedBy
-    // private User createBy;
+    @CreatedBy
+    private String createBy;
 
     @LastModifiedDate
     private LocalDateTime editedAt;
 
-    // @LastModifiedBy
-    // private User editedBy;
+    @LastModifiedBy
+    private String editedBy;
 
 
     public Employee() {
@@ -62,7 +62,9 @@ public class Employee {
         sb.append(", salary=").append(salary);
         sb.append(", employmentDate=").append(employmentDate);
         sb.append(", createdAt=").append(createdAt);
+        sb.append(", createBy='").append(createBy).append('\'');
         sb.append(", editedAt=").append(editedAt);
+        sb.append(", editedBy='").append(editedBy).append('\'');
         sb.append('}');
         return sb.toString();
     }
